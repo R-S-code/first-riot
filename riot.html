@@ -1,0 +1,46 @@
+<html lang="ja">
+<head>
+   <meta charset="UTF-8">
+   <title>riot</title>
+</head>
+<body>
+<hoge-list></hogelist>
+
+<script type="riot/tag">
+<hoge-list>
+   <h1>{ opts.title }</h1>
+   <ul>
+   <li each={ items }>{ friend_name }</li>
+   </ul>
+
+   <form onsubmit={ add_name }>
+      <input ref="friend_name">
+      <button>add</button>
+   </form>
+
+   this.items = opts.items
+   add_name(e) {
+      this.items.push({ friend_name: this.refs.friend_name.value })
+      e.preventDefault()
+   }
+
+   <style>
+      hoge-list h1 {
+         color: green;
+      }
+      hoge-list button {
+         background-color: white;
+      }
+   </style>
+</hoge-list>
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/riot@3.6/riot+compiler.min.js"></script>
+<script>
+riot.mount('hoge-list', {
+   title: 'hoge-list',
+   items: [],
+})
+</script>
+</body>
+</html>
